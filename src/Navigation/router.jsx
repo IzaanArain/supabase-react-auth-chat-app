@@ -9,7 +9,8 @@ import TodoList from "../components/TodoList";
 export const router = createBrowserRouter([
     { path: "/signin", element: <Signin /> },
     { path: "/signup", element: <Signup /> },
-    { path: "/", element: <PrivateRoutes><App /></PrivateRoutes> },
+    // { path: "/", element: <PrivateRoutes><App /></PrivateRoutes> },
     { path: "/chat", element: <PrivateRoutes><Dashboard children={<Chat/>}/></PrivateRoutes> },
     { path: "/dashboard", element: <PrivateRoutes><Dashboard children={<TodoList/>}/></PrivateRoutes> },
+    {path:"*", element:  <PrivateRoutes><Dashboard children={<TodoList/>}/></PrivateRoutes>}
 ])
