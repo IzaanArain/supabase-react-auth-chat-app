@@ -23,6 +23,24 @@ const Chat = () => {
         }
     };
 
+    const fetchMessages = async () => {
+        const { data, error } = await supabase
+            .from("Messages")
+            .select("*")
+            .order("created_at", { ascending: true });
+
+        if (error) {
+            console.error("Error loading chat history:", error);
+        } else {
+            console.log(data)
+            setMessages(data);
+        }
+    };
+
+    useEffect(()=>{
+        fetchMessages();
+    },[]);
+
     useEffect(() => {
         if (!session?.user) {
             setUserOnline([]);
@@ -66,17 +84,31 @@ const Chat = () => {
     const sendMessage = async (e) => {
         e.preventDefault();
         if(newMessage.trim() === "") return;
+
+        const messageData = {
+            message: newMessage,
+            user_name: session?.user?.user_metadata?.email,
+            avatar: session?.user?.user_metadata?.avatar_url,
+            created_at: new Date().toISOString(),
+        };
+
+        // 1. Save message to database
+        const { data, error } = await supabase
+            .from("Messages")
+            .insert([messageData]);
+
+        if (error) {
+            console.error("DB Error sending message:", error);
+            return;
+        }
         supabase.channel("room_one").send({
             type: "broadcast",
             event: "message",
-            payload: {
-                message: newMessage,
-                user_name: session?.user?.user_metadata?.email,
-                avatar: session?.user?.user_metadata?.avatar_url,
-                timestamp: new Date().toISOString()
-            }
+            payload: messageData
         });
-        setNewMessage("")
+        // 3. Show immediately in UI
+        // setMessages((prev) => [...prev, messageData]);
+        setNewMessage("");
     }
 
     const formatTime = (isoString) => {
@@ -136,7 +168,7 @@ const Chat = () => {
                                     ? "text-right mr-2"
                                     : "text-left ml-2"
                                     }`}>
-                                    {formatTime(msg?.timestamp)}
+                                    {formatTime(msg?.created_at)}
                                 </div>
                             </div>
                             {
