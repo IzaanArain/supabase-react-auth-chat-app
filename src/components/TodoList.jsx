@@ -14,7 +14,8 @@ const TodoList = () => {
     const { session } = useAuthContext(); // destructure once
 
     const fetchTodos = async () => {
-        const { data, error } = await supabase.from('Todos')
+        const { data, error } = await supabase
+            .from('Todos')
             .select('*')
             .eq('user_id', session?.user.id); // Filter by user_id;
         if (error) console.error('Error fetching todos:', error);
