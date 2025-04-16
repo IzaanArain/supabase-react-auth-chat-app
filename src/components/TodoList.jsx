@@ -116,7 +116,12 @@ const TodoList = () => {
 
     return (
         <div className="w-full p-6 bg-black text-white rounded-2xl shadow-lg">
-            <h1 className="text-2xl font-bold mb-4 text-center text-green-400">🟢 Supabase Todo</h1>
+            <div className="flex items-center justify-center mb-4">
+                <img src="/supabase-logo-icon.png" alt="Supabase Logo" className="h-12 w-12 mr-2" />
+                <h1 className="text-2xl font-bold text-center text-green-400">
+                    Supabase Todo
+                </h1>
+            </div>
 
             <div className="flex flex-col gap-2 mb-4">
                 <input

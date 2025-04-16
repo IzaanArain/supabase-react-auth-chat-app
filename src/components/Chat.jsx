@@ -175,7 +175,7 @@ const Chat = () => {
                         {/* received message - avatar on left */}
                         {msg.user_name !== session?.user?.email && (
                             <img
-                                src={msg.avatar}
+                                src={msg.avatar || '/default-avatar.jpg'}
                                 alt='/'
                                 className='w-10 h-10 rounded-full mr-2' />
                         )}
