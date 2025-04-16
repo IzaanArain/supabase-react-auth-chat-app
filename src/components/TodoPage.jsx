@@ -129,19 +129,19 @@ const TodoPage = () => {
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full p-2 mb-4 text-black rounded-lg"
+                        className="w-full p-2 mb-4 text-white rounded-lg"
                     />
                     <label className="block text-sm mb-1">Description</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        className="w-full p-2 mb-4 text-black rounded-lg"
+                        className="w-full p-2 mb-4 text-white rounded-lg"
                     />
                     <label className="block text-sm mb-1">Image</label>
                     <input
                         type="file"
                         onChange={(e) => setNewImage(e.target.files[0])}
-                        className="w-full p-2 mb-4 text-black rounded-lg"
+                        className="w-full p-2 mb-4 text-white rounded-lg"
                     />
                     <div className="flex justify-end">
                         <button
@@ -155,13 +155,13 @@ const TodoPage = () => {
             ) : (
                 <>
                     {/* Display the image */}
-                    {imageUrl && (
-                        <img
-                            src={imageUrl}
-                            alt="todo"
-                            className="w-full h-40 object-cover rounded-lg mb-3"
-                        />
-                    )}
+                        {imageUrl && (
+                            <img
+                                src={imageUrl}
+                                alt="todo"
+                                className="h-40 object-cover rounded-lg mb-3"
+                            />
+                        )}
 
                     {/* Display the description */}
                     <p className="text-sm text-gray-400 mb-2">{todo.description}</p>

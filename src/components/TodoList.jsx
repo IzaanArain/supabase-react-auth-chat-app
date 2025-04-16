@@ -141,7 +141,7 @@ const TodoList = () => {
                 />
                 <button
                     onClick={addTodo}
-                    className="bg-green-500 text-black px-3 py-2 rounded-lg hover:bg-green-400 flex items-center justify-center gap-1"
+                    className="bg-green-500 text-white px-3 py-2 rounded-lg hover:bg-green-400 flex items-center justify-center gap-1"
                 >
                     <Plus size={16} />
                     Add

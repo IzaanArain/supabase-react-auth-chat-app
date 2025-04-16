@@ -35,18 +35,18 @@ const Signup = () => {
     <form onSubmit={handleSignUp} className="max-w-md m-auto pt-24">
       <h2 className="font-bold pb-2">Sign up today!</h2>
       <p>Already have a account? <Link to={'/signin'}>Sign in!</Link></p>
-      <div className="flex flex-col py-4">
+      <div className="flex flex-col py-4 border-green-500">
         <input
           onChange={(e) => setEmail(e.target.value)}
           placeholder='Email'
-          className="p-3 mt-6"
+          className="p-3 mt-6 border border-green-500"
           type="email"
           name="email"
           id="email" />
         <input
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="p-3 mt-6"
+          className="p-3 mt-6 border border-green-500"
           type="password"
           name="password"
           id="password" />
